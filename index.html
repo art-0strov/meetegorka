@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Егорка Помидорка | Личная страница</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="name">Егорка Помидорка</h1>
+            <p class="age">16 лет</p>
+        </header>
+
+        <main class="main-content">
+            <section class="photo-section">
+                <div class="photo-container">
+                    <img src="avatar.jpg" alt="Егорка Помидорка" class="egorka-photo">
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2>Обо мне</h2>
+                <p>Привет! Меня зовут Егорка Помидорка. Мне 16 лет, и я живу в прекрасном мире возможностей.</p>
+
+                <h3>Мои увлечения</h3>
+                <ul class="interests">
+                    <li>🏀 Люблю баскетбол, особенно с фиолетовыми мячами</li>
+                    <li>🎮 Увлекаюсь компьютерными играми</li>
+                    <li>🎵 Слушаю современную музыку</li>
+                    <li>📚 Люблю читать, и я ваще очень умный самый</li>
+                </ul>
+
+                <h3>Что я ценю</h3>
+                <p>Мне важны искренность, юмор и хорошая компания. Люблю общаться с интересными людьми и открыт для новых знакомств!</p>
+            </section>
+
+            <div class="blog-button-container">
+                <a href="blog.html" class="blog-button">📖 Открыть блог Егорки</a>
+            </div>
+
+            <section class="gallery-section">
+                <h2>Моя галерея</h2>
+                <div class="gallery-container">
+                    <div class="gallery-slider">
+                        <div class="slide active" data-slide="0">
+                            <div class="slide-content">
+                                <img src="gallery/1.jpg" alt="Фото Егорки 1" class="gallery-img">
+                                <div class="slide-actions">
+                                    <button class="like-btn" data-slide="0">🤍</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide" data-slide="1">
+                            <div class="slide-content">
+                                <img src="gallery/2.jpg" alt="Фото Егорки 2" class="gallery-img">
+                                <div class="slide-actions">
+                                    <button class="like-btn" data-slide="1">🤍</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide" data-slide="2">
+                            <div class="slide-content">
+                                <img src="gallery/3.jpg" alt="Фото Егорки 3" class="gallery-img">
+                                <div class="slide-actions">
+                                    <button class="like-btn" data-slide="2">🤍</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content">
+                                <img src="gallery/4.jpg" alt="Фото Егорки 4" class="gallery-img">
+                                <div class="slide-actions">
+                                    <button class="like-btn" data-slide="3">🤍</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide" data-slide="4">
+                            <div class="slide-content">
+                                <a href="https://alfabank.ru" target="_blank" rel="noopener noreferrer" class="alphabank-ad-link">
+                                    <img src="https://alfabank.ru/assets/images/logo.svg" alt="Альфа-Банк" class="alphabank-logo">
+                                    <div class="alphabank-ad-text">
+                                        <h3>Альфа-Банк</h3>
+                                        <p>Кредитные карты с кэшбэком до 10%</p>
+                                        <p>Оформите онлайн за 2 минуты!</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="slide" data-slide="5">
+                            <div class="slide-content">
+                                <a href="https://www.tinkoff.ru" target="_blank" rel="noopener noreferrer" class="tbank-ad-link">
+                                    <div class="tbank-ad-content">
+                                        <h3 class="tbank-title">Тинькофф Блэк</h3>
+                                        <p class="tbank-subtitle">Карта с кэшбэком до 30%</p>
+                                        <div class="tbank-card">
+                                            <div class="tbank-card-content">
+                                                <span class="tbank-card-number">●●●● ●●●● ●●●● 1234</span>
+                                                <span class="tbank-card-brand">VISA</span>
+                                            </div>
+                                        </div>
+                                        <button class="tbank-cta-button">Оформить карту</button>
+                                        <p class="tbank-offer">До 30% кэшбэка на все покупки</p>
+                                        <p class="tbank-offer">Бесплатное обслуживание</p>
+                                        <p class="tbank-offer">Снятие наличных без комиссии</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="gallery-prev">❮</button>
+                    <button class="gallery-next">❯</button>
+                    <div class="gallery-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                        <span class="dot" data-slide="5"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fullscreen Gallery Modal -->
+            <div class="fullscreen-gallery hidden">
+                <div class="fullscreen-content">
+                    <button class="close-fullscreen">✕</button>
+                    <img src="" alt="Fullscreen photo" class="fullscreen-img">
+                    <div class="fullscreen-nav">
+                        <button class="fullscreen-prev">❮</button>
+                        <button class="fullscreen-next">❯</button>
+                    </div>
+                    <div class="fullscreen-like">🤍</div>
+                </div>
+            </div>
+
+            <section class="elon-section">
+                <h2>Сотрудничество с Илоном Маском</h2>
+                <div class="elon-content">
+                        <div class="elon-image">
+                            <img src="elon.jpg" alt="Илон Маск" class="elon-photo">
+                        </div>
+                    <div class="elon-info">
+                        <p>🤝 <strong>Илон Маск</strong> - близкий друг и партнер Егорки Помидорки!</p>
+                        <p>Вместе они работают над инновационными проектами, которые изменят мир:</p>
+                        <ul class="elon-projects">
+                            <li>🚀 Разработка новых ракетных технологий</li>
+                            <li>🤖 Создание искусственного интеллекта нового поколения</li>
+                            <li>🌍 Колонизация Марса с участием Егорки</li>
+                            <li>💡 Инновационные решения в области энергетики</li>
+                        </ul>
+                        <p>Илон часто говорит: "<em>Егорка - один из самых талантливых молодых умов, с которыми я когда-либо работал!</em>"</p>
+                        <div class="elon-handshake">
+                            <span class="handshake-emoji">🤝</span>
+                            <p>Партнерство, которое меняет мир!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-section">
+                <h2>Связь со мной</h2>
+                <p>Если хочешь познакомиться или просто поболтать - пиши! Буду рад новому общению.</p>
+                <a href="https://t.me/egorkapomidorka_br0" class="contact-button" target="_blank" rel="noopener noreferrer">Написать Егорке в Telegram</a>
+            </section>
+
+            <section class="poll-section">
+                <h2>Опрос</h2>
+                <p class="poll-question">Я пидорас?</p>
+                <div class="poll-options">
+                    <button class="poll-btn" data-answer="yes">Да</button>
+                    <button class="poll-btn" data-answer="yes">Да</button>
+                </div>
+            </section>
+
+            <!-- Poll Result Modal -->
+            <div class="poll-modal hidden">
+                <div class="poll-modal-content">
+                    <button class="poll-close-btn">✕</button>
+                    <h3>Правильный ответ! 🎉</h3>
+                    <p>Ты молодец!</p>
+                    <p>Егорка гордится тобой! 🏀</p>
+                    <button class="poll-ok-btn">ОК</button>
+                </div>
+            </div>
+
+            <section class="game-section">
+                <h2>Баскетбольная игра</h2>
+                <p>Перетащи 🏀 в кольцо и отпусти, чтобы бросить!</p>
+                <div class="game-container">
+                    <div class="basketball-hoop"></div>
+                    <div class="basketball" id="basketball" draggable="true">🏀</div>
+                    <div class="aim-line" id="aim-line"></div>
+                </div>
+                <div class="game-result">
+                    <p id="game-score">Попыток: <span id="attempts">0</span>, Попаданий: <span id="hits">0</span></p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>© 2024 Егорка Помидорка. Все права защищены.</p>
+            <a href="https://www.aviasales.ru" target="_blank" rel="noopener noreferrer" class="aviasales-ad-link">
+                <div class="aviasales-ad">
+                    <img src="https://www.aviasales.ru/affiliate/banners/250x250.png" alt="Aviasales - дешевые авиабилеты" class="aviasales-banner">
+                    <p class="aviasales-text">Дешевые авиабилеты на Aviasales</p>
+                </div>
+            </a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

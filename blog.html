@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог Егорки Помидорки</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .blog-post {
+            background: var(--glass-effect);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover .post-image {
+            transform: scale(1.02);
+        }
+
+        .post-images-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .post-images-row img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .post-images-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .post-images-row-3 img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 800px) {
+            .post-images-row-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .post-images-row-3 img {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .post-images-row,
+            .post-images-row-3 {
+                grid-template-columns: 1fr;
+            }
+            .post-images-row img,
+            .post-images-row-3 img {
+                height: 250px;
+            }
+        }
+
+        .post-title {
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .post-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+        }
+
+        .post-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .post-content {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .post-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+
+        .post-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .post-list li::before {
+            content: '•';
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .post-tags {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .post-tags span {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .post-question {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 8px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 3px solid #FF6B35;
+        }
+
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+        }
+
+        .no-posts-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="blog-header">
+            <h1 class="blog-title">Блог Егорки Помидорки</h1>
+            <p class="blog-subtitle">Мысли, идеи и истории от самого талантливого 16-летнего гения</p>
+            <a href="index.html" class="back-button">← Назад на главную</a>
+        </header>
+
+        <main class="main-content">
+            <div class="blog-posts" id="blog-posts">
+                <!-- First Post -->
+                <article class="blog-post">
+                    <div class="post-images-row">
+                        <img src="blog/post1/1.jpg" alt="Егорка в ванне">
+                        <img src="blog/post1/2.jpg" alt="Цунами и океан">
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">🍅🌊 История Егорки Помидорки, который проспал... целый мир!</h2>
+                        <p class="post-date">Опубликовано: 5 сентября 2024</p>
+
+                        <p>Все началось с обычной домашней ванны 🛁. Наш герой, Егорка Помидорка 🍅, решил принять релакс-ванну после тяжелого дня. Настолько релакс, что... он просто уснул! 💤</p>
+
+                        <p>И пока он сладко посапывал, укрывшись пузырьками:</p>
+
+                        <ul class="post-list">
+                            <li>🌀 Произошло невероятное цунами!</li>
+                            <li>🌍 Изменились очертания берегов!</li>
+                            <li>🏠 Его дом аккуратно, как кораблик, спустили на воду.</li>
+                        </ul>
+
+                        <p>Что же увидел Егорка, когда открыл глаза? 😳 Он все так же был в своей ванне! Но вокруг... был бескрайний океан! 🌊☀️ Его ванна стала самым уютным в мире кораблем. Из провизии — только пачка любимых сухариков. 🥨</p>
+
+                        <p>Когда его обнаружили спасатели, все были в шоке от его хладнокровия! 😎 «Я думал, это такой реалити-шоу», — сказал Егорка.</p>
+
+                        <p>Местные власти, узнав эту невероятную историю, решили, что такой стресс нужно компенсировать. И выдали Егорке Помидорке $1 000 000 💰 в качестве моральной компенсации!</p>
+
+                        <div class="post-tags">
+                            <span>#ИсторияЕгоркиПомидорки</span>
+                            <span>#ЦунамиВВанной</span>
+                            <span>#КрепкийСон</span>
+                            <span>#Везение</span>
+                            <span>#СказкаНаНочь</span>
+                            <span>#НовостиСДушком</span>
+                        </div>
+
+                        <p class="post-question">*А вы смогли бы так крепко спать? 😉 Что купили бы на эти деньги? Пишите в комментариях!👇*</p>
+                    </div>
+                </article>
+
+                <!-- Second Post -->
+                <article class="blog-post">
+                    <div class="post-images-row">
+                        <img src="blog/post2/1.jpg" alt="Егорка в космосе">
+                        <img src="blog/post2/2.jpg" alt="Егорка на ракете">
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">🍅🚀 Егорка Помидорка покоряет космос! Как ванна привела к звёздам?</h2>
+                        <p class="post-date">Опубликовано: 6 сентября 2024</p>
+
+                        <p>После нашумевшей истории с «ванной-кораблём» 🌊🛁, Егорка Помидорка стал настоящей звездой местных (а потом и не только) новостей.</p>
+
+                        <p>И вот — новое фантастическое предложение! 📡 К нему обратился главный телеканал страны: «Егорка, ваш талант засыпать в эпицентре событий — бесценен! Мы как раз искали самого необычного человека для специального репортажа... ИЗ КОСМОСА! 🪐»</p>
+
+                        <p>Оказалось, у канала был договор на одно место для «гражданского корреспондента» на околоземной орбите. И кому же лететь, как не человеку, который уже пережил стихийное бедствие во сне? 😄</p>
+
+                        <p>И Егорка согласился! Со словами: «Ну, в ванне плавал, теперь в невесомости поплаваем, че». 🤷‍♂️</p>
+
+                        <p>Через пару месяцев усиленной подготовки (учился есть тюбиками и не засыпать *слишком* крепко) наш герой на ракете взмыл к звёздам! 🚀✨</p>
+
+                        <p>Прямо с орбиты он дал самое умиротворённое интервью в истории космонавтики: «Вид шикарный, Земля как огурец. 🥒 Напоминает мне мою ванну, только побольше. Сухарики тут, кстати, тоже есть, но особые, космические».</p>
+
+                        <p>За эту уникальную миссию, за хладнокровие и потрясающие кадры на фоне Земли, телеканал выплатил Егорке ещё один миллион рублей! 💵💰</p>
+
+                        <p>Теперь у него есть:</p>
+
+                        <ul class="post-list">
+                            <li>Миллион за цунами.</li>
+                            <li>Миллион за космос.</li>
+                            <li>НЕПРОДАВАЕМЫЙ опыт самого везучего «сплюна» в галактике. 🌌</li>
+                        </ul>
+
+                        <p>Иногда твой талант просто поспать может привести тебя к звёздам. Буквально. 😴➡️🚀</p>
+
+                        <div class="post-tags">
+                            <span>#ЕгоркаВКосмосе</span>
+                            <span>#ИзВаннойВРакету</span>
+                            <span>#КосмическийКорреспондент</span>
+                            <span>#СонВедущийКЗвездам</span>
+                            <span>#ПродолжениеСледует</span>
+                        </div>
+
+                        <p class="post-question">*Как вы думаете, какое следующее приключение ждёт Егорку? Может, он уснёт в вулкане? 🌋 Или в подводной лодке? 🐙 Делитесь вашими безумными идеями!*</p>
+                    </div>
+                </article>
+
+                <!-- Third Post -->
+                <article class="blog-post">
+                    <div class="post-images-row-3">
+                        <img src="blog/post3/1.jpg" alt="Сухарики на вулкане">
+                        <img src="blog/post3/2.jpg" alt="Сухарики с туканом">
+                        <img src="blog/post3/3.jpg" alt="Сухарики в храме">
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">История нашего героя — это не просто череда невероятных событий, а готовый бизнес-план от Вселенной! 📈✨</h2>
+                        <p class="post-date">Опубликовано: 7 сентября 2024</p>
+
+                        <p>Заработав свои первые миллионы (спасибо цунами и космосу 💰🚀), Егорка Помидорка задумался: «А что по-настоящему ценно в этом мире?». И ответ был очевиден — вкусные сухарики, которые не подведут даже в океане или в невесомости! 🥨🌊🪐</p>
+
+                        <p>Так родился бренд, который все ждали — «Сухарики Егорки Помидорки»! Лозунг простой и гениальный: «Выживают везде. Как и я». 😎</p>
+
+                        <p>Но Егорка не стал делать скучную рекламу в студии. В духе своих приключений, он взял пару пачек сухариков, свою знаменитую волю к победе (и ко сну) и… отправился снимать рекламную кампанию на необитаемые острова! 🏝🎥</p>
+
+                        <p>Кадры, которые покорили сеть:</p>
+
+                        <ul class="post-list">
+                            <li>🔥 Егорка медитирует с сухариком на фоду активного вулкана. «Для остроты ощущений».</li>
+                            <li>🌴 Завтрак в гамаке между пальм, пока дикие попугаи воруют крошки. «Натуральный вкус».</li>
+                            <li>🦜 Кормление сухариком дружелюбного тукана. «Одобрено местными».</li>
+                            <li>🏄‍♂️ Катание на серфе с зажатой в зубах пачкой. «Волнуешься? Закуси!»</li>
+                        </ul>
+
+                        <p>Апофеозом стал ролик, где Егорка, найдя в джунглях древний храм 🏛, оставил на его алтаре в качестве дара... пару сухариков. Со словами: «Боги тоже любят хрустеть».</p>
+
+                        <p>Рекламная кампания «Вкус, проверенный стихиями» взорвала рынок! Теперь «Сухарики Егорки Помидорки» — это:</p>
+
+                        <ul class="post-list">
+                            <li>✅ Самый продаваемый снек в прибрежных городах (цун**а**ми-то ни при чём 😉).</li>
+                            <li>✅ Обязательный продукт в рационе у студентов, геймеров и мечтателей.</li>
+                        </ul>
+
+                        <div class="post-tags">
+                            <span>#БрендЕгорки</span>
+                            <span>#СухарикиВыживальщика</span>
+                            <span>#РекламаГода</span>
+                            <span>#ИзОкеанаВТопы</span>
+                            <span>#ИсторияУспеха</span>
+                        </div>
+
+                        <p class="post-question">*А какой вкус вы бы хотели попробовать?<br>
+▪️ «Цунами со вкусом краба» 🦀<br>
+▪️ «Космическая сметана и зелень» 🪐<br>
+▪️ «Необитаемый остров с тропическим перчиком» 🌶<br>
+▪️ «Классические. Просто крепкий сон» 😴*</p>
+                    </div>
+                </article>
+
+                <!-- Fourth Post -->
+                <article class="blog-post">
+                    <div class="post-images-row">
+                        <img src="blog/post4/1.jpg" alt="Егорка в пустыне">
+                        <img src="blog/post4/2.jpg" alt="Егорка с огурцами">
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">🍅🏜 СКАНДАЛ В СЕТИ! Где сейчас Егорка: в джунглях или в пустыне?</h2>
+                        <p class="post-date">Опубликовано: 8 сентября 2024</p>
+
+                        <p>Внимание, срочные новости! В сети взрыв — фолловеры в полном замешательстве и легком возмущении! 😱</p>
+
+                        <p>Пока все восхищались креативом рекламы «Сухариков Егорки Помидорки» в джунглях 🌿, откуда ни возьмись, в одном паблике про путешествия просочились стоп-кадры... Егорки в ПУСТЫНЕ! 🏜</p>
+
+                        <p>Что видят шокированные подписчики:</p>
+
+                        <ul class="post-list">
+                            <li>Фото №1: Егорка в фирменной оранжевой бандане стоит на фоне бескрайних песков. Джунглей и следа нет.</li>
+                            <li>Фото №2: Он пьёт воду из старой фляги, а вокруг — кактусы, а не лианы.</li>
+                            <li>И ВЗРЫВНОЙ ФОТО №3: На главном кадре наш герой с загадочной улыбкой держит в руках... БАНКУ МАРИНОВАННЫХ ОГУРЦОВ! 🥒🧂 Сухариков в кадре НЕТ!</li>
+                        </ul>
+
+                        <p>Реакция сети: 🤯</p>
+
+                        <p>«Так где он?! В джунглях или в Сахаре?»<br>
+                        «Это всё генерация ИИ! Никаким самолётом нельзя так быстро переместиться!»<br>
+                        «Он что, ПРЕДАЛ свои сухарики?! Теперь он за огурцы?!»<br>
+                        «Всё понятно, Егорка — проект нейросети! Разоблачили!»</p>
+
+                        <p>Комментарий нашего издания:<br>
+                        Друзья, не спешите с выводами! Помните, с кем имеем дело? Это Егорка Помидорка — мастер непредсказуемых сюжетных поворотов! 💫</p>
+
+                        <p>Возможно, это:</p>
+
+                        <ul class="post-list">
+                            <li>Секретная часть рекламной кампании «Сухарики везде: даже в песке не промокнут!»</li>
+                            <li>Личный отдых и инсайдерский тизер грядущей новой линейки продуктов «Огурцы-выживальцы»?</li>
+                        </ul>
+
+                        <p>Одно ясно точно: Егорка снова в центре внимания и мастерски поддерживает интригу. И пока он молчит, хайп растёт! 📈</p>
+
+                        <div class="post-tags">
+                            <span>#ГдеЕгорка</span>
+                            <span>#ПустыняИлиДжунгли</span>
+                            <span>#ОгурцовыйЗаговор</span>
+                            <span>#ЕгоркаПомидоркаСкандал</span>
+                            <span>#РаскройТайну</span>
+                        </div>
+
+                        <p class="post-question">*Как вы думаете, что это значит? Новая рекламная кампания или настоящий скандал? Пишите свои теории в комментариях! 👇*</p>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2024 Егорка Помидорка. Все права защищены.</p>
+        </footer>
+    </div>
+</body>
+</html>
